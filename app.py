@@ -3,13 +3,10 @@ import pickle
 import numpy as np
 import os
 
-# Load model
-model = pickle.load(open(os.path.join(os.path.dirname(__file__),
-                    'random_forest_classifier_model.pkl'), 'rb'))
+model = pickle.load(open(os.path.join(os.path.dirname(__file__), 'random_forest_classifier_model.pkl'), 'rb'))
 
 st.set_page_config(page_title="Heart Disease Predictor", page_icon="❤️")
 st.title("❤️ Heart Disease Prediction App")
-st.markdown("Fill in the patient details below to predict heart disease risk.")
 
 col1, col2 = st.columns(2)
 
@@ -33,9 +30,7 @@ with col2:
 if st.button("🔍 Predict"):
     data = np.array([[age, sex, cp, trestbps, chol, fbs,
                       restecg, thalach, exang, oldpeak, slope, ca, thal]])
-
     prediction = model.predict(data)[0]
-
     if prediction == 1:
         st.error("⚠️ The person IS likely to have Heart Disease!")
     else:
